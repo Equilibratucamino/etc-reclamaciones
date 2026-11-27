@@ -222,6 +222,19 @@ section.block{position:relative;padding-block:5rem}
 @media (max-width:760px){.guides{grid-template-columns:1fr}}
 .guides .card a{font-weight:600;text-decoration:none;margin-top:auto}
 
+/* Noticias */
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+@media (max-width:900px){.news-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:580px){.news-grid{grid-template-columns:1fr}}
+.news-card{background:var(--surface);border:1px solid var(--mint-line);border-radius:16px;padding:1.4rem 1.5rem;display:flex;flex-direction:column;gap:.75rem}
+.news-tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green-deep);background:var(--soft);border:1px solid var(--mint-line);padding:.22rem .7rem;border-radius:999px;width:fit-content}
+.news-title{font-family:var(--f-display);font-size:1.08rem;font-weight:600;line-height:1.25;color:var(--ink);margin:0}
+.news-excerpt p,.news-full p{font-size:.92rem;color:var(--muted);line-height:1.7;margin:0 0 .75rem}
+.news-full p:last-child{margin:0}
+.news-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:auto}
+.news-toggle .toggle-ico{display:inline-block;transition:transform .25s}
+.news-toggle[aria-expanded="true"] .toggle-ico{transform:rotate(180deg)}
+
 /* Dark band (about + final CTA) */
 .dark{position:relative;background:var(--night);color:var(--night-ink);overflow:hidden}
 .dark .glow{background:rgba(50,180,140,.22)}
@@ -448,6 +461,109 @@ footer .links{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1rem}
   </div>
 </section>
 
+<!-- ══ NOTICIAS SEO ══ -->
+<section class="block" id="noticias" style="background:var(--soft-2)">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Noticias y análisis</span><h2>Casinos sin licencia: <span class="gi">lo que no te cuentan.</span></h2><p class="lead">Recopilamos información pública, quejas de usuarios y análisis de operadores que actúan sin autorización de la DGOJ en España para que puedas conocer tus derechos antes de reclamar.</p></div>
+    <div class="news-grid" id="news-grid">
+
+      <!-- 1 -->
+      <article class="news-card">
+        <div class="news-tag">1xBet</div>
+        <h3 class="news-title">1xBet en España: sin licencia DGOJ y miles de reclamaciones bancarias pendientes</h3>
+        <div class="news-excerpt"><p>1xBet es uno de los operadores de apuestas online con mayor volumen de quejas en España. Opera sin autorización de la Dirección General de Ordenación del Juego y acepta depósitos de usuarios españoles a través de pasarelas de pago intermediarias que ocultan la naturaleza del cargo en el extracto bancario.</p></div>
+        <div class="news-full" hidden><p>Los usuarios que han intentado retirar sus fondos de 1xBet reportan de forma recurrente en foros como ForoCoches y Reddit España que sus cuentas son bloqueadas o suspendidas justo cuando acumulan saldos significativos. Los cargos en el banco aparecen bajo nombres de empresas de tecnología o comercios genéricos, lo que dificulta identificar la transacción como un depósito en un casino.</p><p>La falta de licencia DGOJ implica que 1xBet no está obligado a cumplir con la normativa española de protección al jugador, incluyendo la verificación de identidad, los límites de depósito, el acceso al Registro General de Interdicciones de Acceso al Juego (RGIAJ) ni las obligaciones de juego responsable.</p><p>Desde el punto de vista bancario, los depósitos realizados con tarjeta Visa o Mastercard en 1xBet pueden ser reclamables bajo las normas de <em>chargeback</em> de estas redes de pago, siempre que se actúe dentro de los plazos establecidos (hasta 120 días en Visa/Mastercard, y hasta 13 meses en casos de servicios no prestados bajo PSD2). En ETC estudiamos tu caso gratis y te acompañamos en todo el proceso.</p></div>
+        <div class="news-actions"><button class="news-toggle btn btn-ghost" aria-expanded="false">Leer más <span class="toggle-ico">↓</span></button><a href="#solicitud" class="btn btn-green js-open">Reclamar mis depósitos →</a></div>
+      </article>
+
+      <!-- 2 -->
+      <article class="news-card">
+        <div class="news-tag">22Bet</div>
+        <h3 class="news-title">22Bet: cómo recuperar dinero depositado con tarjeta desde España</h3>
+        <div class="news-excerpt"><p>22Bet opera en el mercado español sin contar con licencia de la DGOJ. A pesar de ello, acepta registros y depósitos de jugadores españoles, procesando los pagos a través de empresas intermediarias radicadas fuera de la UE que enmascaran el origen de la transacción.</p></div>
+        <div class="news-full" hidden><p>Uno de los problemas más habituales con 22Bet reportados por usuarios españoles es la dificultad para retirar fondos una vez superados ciertos umbrales. Las solicitudes de verificación de identidad (KYC) se alargan indefinidamente o se solicita documentación adicional de forma reiterada hasta que el usuario abandona la reclamación.</p><p>Los cargos de 22Bet en el extracto bancario aparecen frecuentemente bajo nombres de empresas como "BetSolutions", "Digital Services Ltd" u otros términos genéricos que no identifican claramente al casino. Este ocultamiento es precisamente lo que facilita la reclamación bancaria, ya que constituye una irregularidad en la identificación del comercio (MCC manipulation).</p><p>Si depositaste con Visa o Mastercard en 22Bet, existe una vía técnica para recuperar tu dinero ante el banco emisor. El proceso se basa en las normas de disputa de cargos de Visa y Mastercard, que obligan a la entidad emisora española a tramitar la reclamación. Contáctanos para un estudio gratuito de tu caso.</p></div>
+        <div class="news-actions"><button class="news-toggle btn btn-ghost" aria-expanded="false">Leer más <span class="toggle-ico">↓</span></button><a href="#solicitud" class="btn btn-green js-open">Reclamar mis depósitos →</a></div>
+      </article>
+
+      <!-- 3 -->
+      <article class="news-card">
+        <div class="news-tag">Wazamba</div>
+        <h3 class="news-title">Wazamba Casino sin licencia en España: qué puedes hacer si perdiste dinero</h3>
+        <div class="news-excerpt"><p>Wazamba es un casino online de origen maltés que opera en España sin autorización de la DGOJ. Aunque cuenta con licencia de la Malta Gaming Authority (MGA), esta no tiene validez en territorio español, donde todo operador de juego online debe estar expresamente autorizado por la autoridad española.</p></div>
+        <div class="news-full" hidden><p>Muchos usuarios confunden la licencia MGA con una autorización válida en España. Sin embargo, la Ley 13/2011 de regulación del juego exige una licencia específica de la DGOJ para operar legalmente desde España. Wazamba no figura en el registro de operadores autorizados, lo que significa que sus servicios son ilegales para residentes españoles.</p><p>Usuarios en foros especializados reportan que Wazamba utiliza distintos procesadores de pago para aceptar tarjetas españolas. Los cargos suelen aparecer bajo denominaciones de empresas tecnológicas o de entretenimiento, lo que hace complicado que el usuario relacione el cargo con el casino.</p><p>La vía bancaria permite a los usuarios que pagaron con Visa o Mastercard iniciar un procedimiento de disputa de cargo argumentando la irregularidad en la identificación del comercio o la ausencia de licencia del prestador del servicio. En ETC analizamos tu extracto y preparamos el expediente técnico necesario para presentar ante tu banco, sin coste inicial.</p></div>
+        <div class="news-actions"><button class="news-toggle btn btn-ghost" aria-expanded="false">Leer más <span class="toggle-ico">↓</span></button><a href="#solicitud" class="btn btn-green js-open">Reclamar mis depósitos →</a></div>
+      </article>
+
+      <!-- 4 (oculto) -->
+      <article class="news-card" hidden>
+        <div class="news-tag">National Casino</div>
+        <h3 class="news-title">National Casino: cargos ocultos en el banco y sin amparo legal en España</h3>
+        <div class="news-excerpt"><p>National Casino opera bajo una licencia de la Malta Gaming Authority pero carece de autorización de la DGOJ para ofrecer sus servicios en España. A pesar de ello, es accesible para jugadores españoles y acepta depósitos con tarjeta Visa y Mastercard a través de procesadores de pago externos.</p></div>
+        <div class="news-full" hidden><p>Los usuarios de National Casino en España que han solicitado retiradas de fondos reportan procesos de verificación especialmente tediosos. En algunos casos, se solicita documentación bancaria, facturas de servicios y comprobantes de identidad de forma repetida, lo que retrasa o imposibilita la retirada del dinero.</p><p>Un patrón recurrente en los foros de jugadores afectados es el cierre de cuentas tras acumular ganancias. El casino alega "violación de términos y condiciones" sin especificar cuál, y en muchos casos retiene el saldo. Al no estar regulado en España, el usuario no tiene acceso a ningún sistema de resolución de disputas reconocido por la DGOJ.</p><p>La reclamación bancaria es la vía más efectiva disponible. Si tus pagos se realizaron con tarjeta española, el banco emisor tiene la obligación de tramitar la disputa bajo las reglas Visa/Mastercard. Nuestro equipo prepara el expediente técnico necesario para maximizar las posibilidades de recuperación.</p></div>
+        <div class="news-actions"><button class="news-toggle btn btn-ghost" aria-expanded="false">Leer más <span class="toggle-ico">↓</span></button><a href="#solicitud" class="btn btn-green js-open">Reclamar mis depósitos →</a></div>
+      </article>
+
+      <!-- 5 (oculto) -->
+      <article class="news-card" hidden>
+        <div class="news-tag">Legiano</div>
+        <h3 class="news-title">Legiano Casino sin licencia DGOJ: análisis de quejas y vías de reclamación</h3>
+        <div class="news-excerpt"><p>Legiano Casino es un operador relativamente nuevo que ha captado jugadores españoles sin contar con la preceptiva licencia de la DGOJ. Opera bajo licencia de Curaçao, una jurisdicción offshore que no garantiza ningún nivel de protección al jugador equivalente al exigido en España.</p></div>
+        <div class="news-full" hidden><p>Las licencias de Curaçao han sido señaladas en numerosos informes de reguladores europeos como una vía para operar sin controles efectivos. Curaçao no exige a los operadores la verificación del origen de los fondos, la protección de los saldos de los jugadores en cuentas separadas, ni el cumplimiento de protocolos de juego responsable comparables a los europeos.</p><p>En el caso de Legiano, los usuarios reportan que los bonos de bienvenida incluyen condiciones de rollover (requisitos de apuesta) casi imposibles de cumplir, diseñadas para retener los fondos depositados. Cuando se solicita la retirada del dinero propio —no el bono— el casino aplica igualmente estas condiciones de forma abusiva.</p><p>Si depositaste en Legiano con tarjeta española, la reclamación ante tu banco bajo las reglas de disputa de Visa o Mastercard es la vía más directa. Te ayudamos a recopilar los extractos y a estructurar el expediente técnico que necesitas para iniciar la reclamación.</p></div>
+        <div class="news-actions"><button class="news-toggle btn btn-ghost" aria-expanded="false">Leer más <span class="toggle-ico">↓</span></button><a href="#solicitud" class="btn btn-green js-open">Reclamar mis depósitos →</a></div>
+      </article>
+
+      <!-- 6 (oculto) -->
+      <article class="news-card" hidden>
+        <div class="news-tag">Wild Tokyo</div>
+        <h3 class="news-title">Wild Tokyo Casino: depósitos bloqueados y sin respaldo legal en España</h3>
+        <div class="news-excerpt"><p>Wild Tokyo es un casino online con temática japonesa que opera sin licencia de la DGOJ para el mercado español. Acepta registros y depósitos de jugadores con residencia en España, procesando los pagos a través de pasarelas internacionales que ocultan la naturaleza del cargo en el extracto bancario.</p></div>
+        <div class="news-full" hidden><p>Un problema recurrente reportado en foros de afectados es que Wild Tokyo no dispone de un servicio de atención al cliente en español capaz de resolver disputas sobre saldos retenidos. El soporte opera en inglés a través de chat online y raramente escala las quejas a un nivel de resolución formal.</p><p>Desde el punto de vista regulatorio, la ausencia de licencia DGOJ significa que Wild Tokyo no tiene obligación de contribuir al fondo de garantías del juego español, no está sujeto a auditorías de la DGOJ y no puede ser sancionado por esta autoridad en caso de incumplimiento con jugadores españoles. Esto deja al usuario sin las protecciones básicas que sí tendría con un casino autorizado.</p><p>La vía más efectiva para los afectados es la reclamación bancaria directa. Los depósitos con tarjeta Visa o Mastercard pueden ser disputados bajo las reglas de estas redes de pago, argumentando la irregularidad en la identificación del comercio o la ausencia de servicio efectivo. Contáctanos para analizar tu caso sin compromiso.</p></div>
+        <div class="news-actions"><button class="news-toggle btn btn-ghost" aria-expanded="false">Leer más <span class="toggle-ico">↓</span></button><a href="#solicitud" class="btn btn-green js-open">Reclamar mis depósitos →</a></div>
+      </article>
+
+      <!-- 7 (oculto) -->
+      <article class="news-card" hidden>
+        <div class="news-tag">Ivibet</div>
+        <h3 class="news-title">Ivibet: cómo reclamar al banco los depósitos realizados desde España</h3>
+        <div class="news-excerpt"><p>Ivibet es un operador de apuestas y casino online que, pese a aceptar jugadores españoles, no cuenta con licencia de la DGOJ. Opera bajo una licencia de Curaçao y procesa pagos con tarjeta a través de intermediarios financieros que enmascaran el nombre del casino en los extractos bancarios.</p></div>
+        <div class="news-full" hidden><p>Los cargos de Ivibet en el extracto bancario de los usuarios españoles suelen aparecer bajo nombres como "IVB Solutions", "IBT Services" u otros términos genéricos no relacionados con el juego. Esta práctica de ocultamiento del concepto real del cargo es precisamente lo que permite a los usuarios iniciar un procedimiento de disputa ante su banco.</p><p>Según las normas de Visa y Mastercard, el comercio tiene la obligación de identificarse correctamente en el extracto del titular de la tarjeta. Cuando el nombre que aparece no coincide con el servicio prestado, existe un motivo técnico de disputa (reason code) que el banco emisor español está obligado a tramitar.</p><p>En ETC hemos analizado numerosos casos con cargos de Ivibet y otros operadores similares. La clave está en identificar todos los cargos relacionados en el extracto, independientemente del nombre con el que aparezcan, y presentar la documentación correcta ante el banco en los plazos establecidos. Te ayudamos en cada paso.</p></div>
+        <div class="news-actions"><button class="news-toggle btn btn-ghost" aria-expanded="false">Leer más <span class="toggle-ico">↓</span></button><a href="#solicitud" class="btn btn-green js-open">Reclamar mis depósitos →</a></div>
+      </article>
+
+      <!-- 8 (oculto) -->
+      <article class="news-card" hidden>
+        <div class="news-tag">Bizzo Casino</div>
+        <h3 class="news-title">Bizzo Casino sin licencia española: análisis de pagos y opciones de recuperación</h3>
+        <div class="news-excerpt"><p>Bizzo Casino opera en el mercado internacional sin autorización específica de la DGOJ para España. A pesar de ello, acepta pagos con tarjeta de crédito y débito de bancos españoles, empleando procesadores de pago intermediarios que dificultan la identificación del cargo en el extracto.</p></div>
+        <div class="news-full" hidden><p>Un aspecto especialmente problemático de Bizzo Casino es su política de bonificaciones. Las condiciones de rollover (multiplicadores de apuesta requeridos antes de poder retirar) suelen ser de 40x o 50x el depósito más el bono, lo que en la práctica hace imposible retirar el dinero dentro de los plazos. Muchos usuarios reportan que al intentar retirar el depósito inicial sin activar el bono, el casino igualmente aplica restricciones.</p><p>Desde el punto de vista de la reclamación bancaria, los depósitos en Bizzo Casino realizados con tarjeta Visa o Mastercard están cubiertos por los procedimientos de disputa de estas redes. Los plazos son: hasta 120 días desde la fecha del cargo para Visa y Mastercard en la mayoría de los motivos; y hasta 540 días (18 meses) en casos de servicios no prestados en Mastercard bajo PSD2.</p><p>Si tienes cargos de Bizzo Casino en tu tarjeta, nuestro equipo los identifica todos —independientemente del nombre con el que aparezcan—, valora la vía más adecuada y prepara el expediente para tu banco sin coste por adelantado.</p></div>
+        <div class="news-actions"><button class="news-toggle btn btn-ghost" aria-expanded="false">Leer más <span class="toggle-ico">↓</span></button><a href="#solicitud" class="btn btn-green js-open">Reclamar mis depósitos →</a></div>
+      </article>
+
+      <!-- 9 (oculto) -->
+      <article class="news-card" hidden>
+        <div class="news-tag">Myempire</div>
+        <h3 class="news-title">MyEmpire Casino: fondos retenidos y sin licencia de la DGOJ</h3>
+        <div class="news-excerpt"><p>MyEmpire es un casino online que atrae a jugadores españoles mediante campañas de marketing en redes sociales y plataformas de streaming, pero opera sin la licencia obligatoria de la DGOJ. Los pagos se procesan a través de empresas de servicios financieros con domicilio fuera de la Unión Europea.</p></div>
+        <div class="news-full" hidden><p>Los usuarios afectados de MyEmpire en foros como Reddit, ForoCoches o Trustpilot reportan con frecuencia la misma casuística: retención de fondos al solicitar la primera retirada de cantidades superiores a los depósitos iniciales, solicitudes de verificación de identidad que no se resuelven en los plazos indicados, y falta de respuesta del servicio de atención al cliente una vez planteada la queja.</p><p>La ausencia de regulación española implica que MyEmpire no tiene obligación de responder ante ningún organismo de resolución de disputas reconocido en España. No puede ser denunciado ante la DGOJ, ya que esta solo tiene competencia sobre operadores autorizados. Tampoco aplica el Real Decreto 958/2020 sobre comunicaciones comerciales de juego, lo que explica la publicidad descontrolada.</p><p>La reclamación bancaria es la herramienta más efectiva para los afectados. Si pagaste con tarjeta Visa o Mastercard, el banco emisor español tiene mecanismos de disputa que podemos activar en tu nombre con la documentación adecuada. Estudio gratuito, sin compromiso y sin pago por adelantado.</p></div>
+        <div class="news-actions"><button class="news-toggle btn btn-ghost" aria-expanded="false">Leer más <span class="toggle-ico">↓</span></button><a href="#solicitud" class="btn btn-green js-open">Reclamar mis depósitos →</a></div>
+      </article>
+
+      <!-- 10 (oculto) -->
+      <article class="news-card" hidden>
+        <div class="news-tag">Rolletto</div>
+        <h3 class="news-title">Rolletto Casino: irregularidades en pagos con tarjeta y vías para recuperar tu dinero</h3>
+        <div class="news-excerpt"><p>Rolletto Casino opera en España sin la autorización de la DGOJ y sin aplicar los protocolos de protección al jugador exigidos por la Ley 13/2011. Los pagos se canalizan a través de procesadores de pago de terceros que presentan los cargos en el extracto bancario bajo denominaciones ajenas al juego.</p></div>
+        <div class="news-full" hidden><p>Uno de los motivos técnicos que permite reclamar depósitos en casinos como Rolletto es la discrepancia entre el nombre del comercio que aparece en el extracto y el servicio real prestado. Las redes Visa y Mastercard exigen a los comercios adheridos identificarse correctamente. Cuando un casino usa un nombre de empresa tecnológica o de servicios para cobrar servicios de juego, incumple las normas del comercio adherido.</p><p>Adicionalmente, si un usuario solicitó la retirada de fondos y esta fue denegada, bloqueada o ignorada, existe un motivo de disputa adicional por "servicio no prestado", que tiene plazos más amplios para ser reclamado y que puede aplicarse incluso cuando han pasado más de cuatro meses desde el cargo.</p><p>En ETC hemos tramitado con éxito casos de usuarios con cargos de Rolletto y casinos similares. El proceso empieza con un análisis gratuito de tus extractos, identificamos todos los cargos recuperables, preparamos el expediente técnico y lo presentamos ante tu banco contigo. Solo cobramos si recuperamos tu dinero.</p></div>
+        <div class="news-actions"><button class="news-toggle btn btn-ghost" aria-expanded="false">Leer más <span class="toggle-ico">↓</span></button><a href="#solicitud" class="btn btn-green js-open">Reclamar mis depósitos →</a></div>
+      </article>
+
+    </div><!-- /news-grid -->
+    <div style="text-align:center;margin-top:2rem" id="news-more-wrap">
+      <button class="btn btn-ghost" id="news-more-btn">Ver más artículos <span>↓</span></button>
+    </div>
+  </div>
+</section>
+
 <section class="dark" id="nosotros">
   <div class="glow" style="width:520px;height:520px;right:-120px;top:-120px"></div>
   <div class="glow" style="width:420px;height:420px;left:-160px;bottom:-140px"></div>
@@ -613,6 +729,33 @@ footer .links{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1rem}
   },{threshold:0.18});
 
   [procHead,stepsEl,taglineEl,feeEl].forEach(function(el){if(el)io.observe(el)});
+})();
+
+// Noticias: "Leer más" y "Ver más"
+(function(){
+  // Leer más / menos
+  document.querySelectorAll('.news-toggle').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card=btn.closest('.news-card');
+      var full=card.querySelector('.news-full');
+      var open=btn.getAttribute('aria-expanded')==='true';
+      full.hidden=open;
+      btn.setAttribute('aria-expanded',open?'false':'true');
+      btn.childNodes[0].textContent=open?'Leer más ':'Leer menos ';
+    });
+  });
+  // Ver más (muestra 2 artículos ocultos cada vez)
+  var moreBtn=document.getElementById('news-more-btn');
+  if(moreBtn){
+    moreBtn.addEventListener('click',function(){
+      var hidden=[].slice.call(document.querySelectorAll('#news-grid .news-card[hidden]'));
+      var show=hidden.slice(0,2);
+      show.forEach(function(c){c.hidden=false});
+      if(show.length<2||hidden.length===show.length){
+        document.getElementById('news-more-wrap').hidden=true;
+      }
+    });
+  }
 })();
 </script>
 

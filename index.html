@@ -25,6 +25,8 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--night)}
 .glow{position:absolute;border-radius:50%;filter:blur(60px);background:var(--glow);pointer-events:none;z-index:0}
+@media (max-width:768px){.glow{display:none}}
+@media (min-width:769px) and (max-width:1024px){.glow{opacity:.45}}
 a{color:var(--green-deep)}
 a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--green);outline-offset:2px}
 .wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -77,7 +79,16 @@ p{margin:0}
 .checks{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem}
 .checks li{display:flex;align-items:center;gap:.7rem;font-size:.95rem}
 .checks li::before{content:"✓";flex:none;width:1.5rem;height:1.5rem;border-radius:50%;display:grid;place-items:center;font-size:.75rem;font-weight:700;color:var(--green-deep);background:var(--soft);border:1px solid var(--mint-line)}
-.checks li:first-child::before{color:#fff;background:#2ecc71;border:none;box-shadow:0 0 8px rgba(46,204,113,.5)}
+.checks li:last-child::before{color:#fff;background:#2ecc71;border:none;box-shadow:0 0 8px rgba(46,204,113,.5)}
+@keyframes checkIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes flashTick{0%,100%{box-shadow:0 0 8px rgba(46,204,113,.5)}50%{box-shadow:0 0 0 8px rgba(46,204,113,.25),0 0 20px rgba(46,204,113,.9)}}
+.checks li{opacity:0}
+.checks.checks-visible li{animation:checkIn .45s ease forwards}
+.checks.checks-visible li:nth-child(1){animation-delay:.15s}
+.checks.checks-visible li:nth-child(2){animation-delay:.55s}
+.checks.checks-visible li:nth-child(3){animation-delay:.95s}
+.checks.checks-visible li:nth-child(4){animation-delay:1.35s}
+.checks.checks-visible li:last-child::before{animation:checkIn .45s ease 1.35s forwards,flashTick .5s ease 1.9s 4}
 .checks b{font-weight:600}
 
 /* ===== Form: green-bordered dropdown ===== */
@@ -297,11 +308,11 @@ footer .links{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1rem}
       <p style="font-family:var(--f-body);font-size:.8rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin:0">Servicio de recuperación de dinero</p>
       <h1>¿Perdiste dinero en un casino <span class="hl" style="background:linear-gradient(transparent 55%,rgba(220,80,50,.4) 55%)">sin licencia</span>?<span style="display:block;margin-top:.18em">Estudiamos la devolución de <span class="gi">tus depósitos.</span></span></h1>
       <p class="lead">Revisamos tus extractos y preparamos con nuestro equipo técnico el expediente para que reclames ante tu banco los pagos hechos con tarjeta a través de comercios intermediarios.</p>
-      <ul class="checks">
-        <li><span>Recuperamos el <b>100% del dinero que ingresaste</b></span></li>
+      <ul class="checks" id="hero-checks">
         <li><span>Pagaste con <b>Visa o Mastercard</b></span></li>
         <li><span>Los depósitos son de los <b>últimos 4 meses</b></span></li>
         <li><span>El casino está en <a href="#casinos">nuestra lista</a> de casinos sin licencia</span></li>
+        <li><span>Recuperamos el <b>100% del dinero que ingresaste</b></span></li>
       </ul>
       <div class="hero-ctas">
         <a class="btn btn-green" href="#solicitud" id="cta-hero">Comprobar mi caso gratis</a>
@@ -714,6 +725,8 @@ footer .links{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1rem}
   document.getElementById('back').addEventListener('click',function(){done.hidden=true;form.hidden=false;});
 
   // ---- scroll-reveal: proceso section ----
+  var checksEl=document.getElementById('hero-checks');
+  if(checksEl){new IntersectionObserver(function(entries,obs){entries.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('checks-visible');obs.unobserve(e.target);});},{threshold:0.3}).observe(checksEl);}
   var procHead=document.getElementById('proc-head');
   var stepsEl=document.getElementById('steps-list');
   var feeEl=document.querySelector('.fee');

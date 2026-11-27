@@ -161,17 +161,33 @@ section.block{position:relative;padding-block:5rem}
 
 /* Steps with connector line */
 .steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;list-style:none;padding:0;margin:0}
-.steps::before{content:"";position:absolute;top:1.5rem;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--green),rgba(50,180,140,.3))}
-.steps li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.45rem}
-.steps li::before{content:attr(data-ico);width:3rem;height:3rem;border-radius:50%;display:grid;place-items:center;font-size:1.35rem;margin-bottom:.6rem;box-shadow:0 0 0 6px var(--bg),0 8px 20px rgba(50,180,140,.35);background:var(--soft);border:2px solid var(--mint-line);animation:floatStep 3s ease-in-out infinite}
-.steps li:nth-child(2)::before{animation-delay:.4s}
-.steps li:nth-child(3)::before{animation-delay:.8s}
-.steps li:nth-child(4)::before{animation-delay:1.2s}
-@keyframes floatStep{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+/* progress line track */
+.steps::after{content:"";position:absolute;top:1.5rem;left:12%;right:12%;height:2px;background:var(--line);border-radius:2px;z-index:0}
+/* animated fill on top */
+.steps::before{content:"";position:absolute;top:1.5rem;left:12%;width:calc(88% - 12%);height:2px;background:linear-gradient(90deg,var(--green),var(--green-deep));border-radius:2px;z-index:1;transform-origin:left;transform:scaleX(0);transition:transform 1.4s cubic-bezier(.4,0,.2,1) .3s}
+.steps.proc-in::before{transform:scaleX(1)}
+.steps li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.45rem;
+  opacity:0;transform:translateY(28px);transition:opacity .55s ease,transform .55s ease;transition-delay:var(--d,0s)}
+.steps.proc-in li{opacity:1;transform:none}
+.steps li::before{content:attr(data-ico);width:3rem;height:3rem;border-radius:50%;display:grid;place-items:center;font-size:1.35rem;margin-bottom:.6rem;
+  box-shadow:0 0 0 6px var(--bg),0 8px 20px rgba(50,180,140,.35);background:var(--soft);border:2px solid var(--mint-line);
+  transform:scale(.7);transition:transform .4s cubic-bezier(.34,1.56,.64,1) var(--d,.05s);z-index:2;position:relative}
+.steps.proc-in li::before{transform:scale(1);animation:floatStep 3.5s ease-in-out infinite var(--d,0s)}
+@keyframes floatStep{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1)}}
 .steps p{color:var(--muted);font-size:.9rem;max-width:24ch}
-@media (max-width:820px){.steps{grid-template-columns:1fr 1fr;row-gap:2.2rem}.steps::before{display:none}}
+/* step number badge */
+.steps li .step-num{position:absolute;top:-.5rem;right:calc(50% - 1.9rem);font-size:.62rem;font-weight:700;color:var(--on-green);background:var(--green);border-radius:999px;padding:.05em .4em;line-height:1.6;opacity:0;transform:scale(.5);transition:opacity .3s ease var(--d,.05s),transform .3s cubic-bezier(.34,1.56,.64,1) var(--d,.05s)}
+.steps.proc-in li .step-num{opacity:1;transform:scale(1)}
+/* head + fee reveal */
+#proceso .head{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+#proceso .head.proc-in{opacity:1;transform:none}
+.fee{opacity:0;transform:translateY(16px);transition:opacity .6s .2s ease,transform .6s .2s ease;
+  margin:3.4rem auto 0;max-width:820px;display:flex;flex-wrap:wrap;gap:1.4rem 2rem;align-items:center;justify-content:center;text-align:left;padding:1.6rem 2rem;border-radius:22px;background:linear-gradient(135deg,var(--soft) 0%,var(--surface) 100%);border:1px solid var(--mint-line)}
+.fee.proc-in{opacity:1;transform:none}
+.proc-tagline{opacity:0;transform:translateY(14px);transition:opacity .5s .15s ease,transform .5s .15s ease}
+.proc-tagline.proc-in{opacity:1;transform:none}
+@media (max-width:820px){.steps{grid-template-columns:1fr 1fr;row-gap:2.2rem}.steps::before,.steps::after{display:none}}
 @media (max-width:440px){.steps{grid-template-columns:1fr}}
-.fee{margin:3.4rem auto 0;max-width:820px;display:flex;flex-wrap:wrap;gap:1.4rem 2rem;align-items:center;justify-content:center;text-align:left;padding:1.6rem 2rem;border-radius:22px;background:linear-gradient(135deg,var(--soft) 0%,var(--surface) 100%);border:1px solid var(--mint-line)}
 .fee .pct{font-family:var(--f-display);font-size:clamp(2.8rem,7vw,4rem);font-weight:600;line-height:1;color:var(--green-deep)}
 .fee .pct small{font-size:.38em;font-family:var(--f-body);font-weight:500;color:var(--muted)}
 .fee div{flex:1;min-width:240px}
@@ -372,14 +388,14 @@ footer .links{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1rem}
 
 <section class="block" id="proceso" style="padding-top:2rem">
   <div class="wrap">
-    <div class="head"><span style="font-size:1rem;font-weight:700;color:var(--green);letter-spacing:.04em">El proceso es super sencillo</span><h2>Paso a paso, <span class="gi">contigo.</span></h2></div>
-    <ol class="steps">
-      <li data-ico="🔍"><h3>Analizamos tu caso</h3><p>Revisamos los detalles de tus depósitos. Es gratis y sin compromiso.</p></li>
-      <li data-ico="🏦" style="--d:.4s"><h3>Estudiamos la vía</h3><p>Valoramos las opciones que ofrecen las normas de Visa y Mastercard.</p></li>
-      <li data-ico="📂" style="--d:.8s"><h3>Preparamos tu expediente</h3><p>Te entregamos toda la documentación técnica lista para presentar.</p></li>
-      <li data-ico="📨" style="--d:1.2s"><h3>Presentas la reclamación</h3><p>La presentamos contigo por correo electrónico ante tu banco o entidad.</p></li>
+    <div class="head" id="proc-head"><span style="font-size:1rem;font-weight:700;color:var(--green);letter-spacing:.04em">El proceso es super sencillo</span><h2>Paso a paso, <span class="gi">contigo.</span></h2></div>
+    <ol class="steps" id="steps-list">
+      <li data-ico="🔍" style="--d:.1s"><span class="step-num">01</span><h3>Analizamos tu caso</h3><p>Revisamos los detalles de tus depósitos. Es gratis y sin compromiso.</p></li>
+      <li data-ico="🏦" style="--d:.45s"><span class="step-num">02</span><h3>Estudiamos la vía</h3><p>Valoramos las opciones que ofrecen las normas de Visa y Mastercard.</p></li>
+      <li data-ico="📂" style="--d:.8s"><span class="step-num">03</span><h3>Preparamos tu expediente</h3><p>Te entregamos toda la documentación técnica lista para presentar.</p></li>
+      <li data-ico="📨" style="--d:1.15s"><span class="step-num">04</span><h3>Presentas la reclamación</h3><p>La presentamos contigo por correo electrónico ante tu banco o entidad.</p></li>
     </ol>
-    <p style="text-align:center;font-family:var(--f-display);font-size:1.35rem;font-weight:700;color:var(--green);margin:0 0 1rem">¡y recuperamos todo tu dinero!</p>
+    <p class="proc-tagline" style="text-align:center;font-family:var(--f-display);font-size:1.35rem;font-weight:700;color:var(--green);margin:0 0 1rem">¡y recuperamos todo tu dinero!</p>
     <div class="fee">
       <span class="pct">25%<small> + IVA</small></span>
       <div><h3>Solo pagas si recuperas tu dinero</h3><p>El estudio es gratis y no hay pagos por adelantado. Cada caso es distinto y no podemos garantizar el resultado de una reclamación. Fuera de España el IVA normalmente no aplica.</p></div>
@@ -587,6 +603,23 @@ footer .links{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1rem}
   });
   form.addEventListener('submit',function(e){e.preventDefault();aWa.click();});
   document.getElementById('back').addEventListener('click',function(){done.hidden=true;form.hidden=false;});
+
+  // ---- scroll-reveal: proceso section ----
+  var procHead=document.getElementById('proc-head');
+  var stepsEl=document.getElementById('steps-list');
+  var feeEl=document.querySelector('.fee');
+  var taglineEl=document.querySelector('.proc-tagline');
+
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var t=e.target;
+      t.classList.add('proc-in');
+      io.unobserve(t);
+    });
+  },{threshold:0.18});
+
+  [procHead,stepsEl,taglineEl,feeEl].forEach(function(el){if(el)io.observe(el)});
 })();
 </script>
 

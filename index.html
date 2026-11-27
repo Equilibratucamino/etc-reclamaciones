@@ -176,8 +176,7 @@ section.block{position:relative;padding-block:5rem}
 @keyframes floatStep{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1)}}
 .steps p{color:var(--muted);font-size:.9rem;max-width:24ch}
 /* step number badge */
-.steps li .step-num{position:absolute;top:-.5rem;right:calc(50% - 1.9rem);font-size:.62rem;font-weight:700;color:var(--on-green);background:var(--green);border-radius:999px;padding:.05em .4em;line-height:1.6;opacity:0;transform:scale(.5);transition:opacity .3s ease var(--d,.05s),transform .3s cubic-bezier(.34,1.56,.64,1) var(--d,.05s)}
-.steps.proc-in li .step-num{opacity:1;transform:scale(1)}
+.steps li .step-num{display:none}
 /* head + fee reveal */
 #proceso .head{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
 #proceso .head.proc-in{opacity:1;transform:none}

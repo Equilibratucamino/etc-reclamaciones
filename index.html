@@ -160,7 +160,7 @@ section.block{position:relative;padding-block:5rem}
 /* animated fill on top */
 .steps::before{content:"";position:absolute;top:1.5rem;left:12%;width:calc(88% - 12%);height:2px;background:linear-gradient(90deg,var(--green),var(--green-deep));border-radius:2px;z-index:1;transform-origin:left;transform:scaleX(0);transition:transform 1.4s cubic-bezier(.4,0,.2,1) .3s}
 .steps.proc-in::before{transform:scaleX(1)}
-.steps li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.45rem;
+.steps li{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.45rem;
   opacity:0;transform:translateY(28px);transition:opacity .55s ease,transform .55s ease;transition-delay:var(--d,0s)}
 .steps.proc-in li{opacity:1;transform:none}
 .steps li::before{content:attr(data-ico);width:3rem;height:3rem;border-radius:50%;display:grid;place-items:center;font-size:1.35rem;margin-bottom:.6rem;

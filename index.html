@@ -778,23 +778,35 @@ footer .links{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1rem}
     if(!document.getElementById('f-priv').checked)return 'Para continuar, acepta la Política de Privacidad.';
     return '';
   }
+  function buildUrl(via,d){
+    if(via==='wa') return 'https://wa.me/'+WA+'?text='+encodeURIComponent(d.text);
+    return 'mailto:'+MAIL+'?subject='+encodeURIComponent('Estudio de mi caso - '+(d.cas[0]||'casino'))+'&body='+encodeURIComponent(d.text);
+  }
   function refresh(){
     var d=collect();
-    aWa.href='https://wa.me/'+WA+'?text='+encodeURIComponent(d.text);
-    aMail.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Estudio de mi caso - '+(d.cas[0]||'casino'))+'&body='+encodeURIComponent(d.text);
+    aWa.href=buildUrl('wa',d);
+    aMail.href=buildUrl('mail',d);
+    var hasData=d.cas.length||(d.fd.get('nombre')||'').trim()||d.fd.get('q1');
+    if(hasData){
+      [].forEach.call(document.querySelectorAll('.js-wa:not(#send-wa)'),function(a){
+        a.href='https://wa.me/'+WA+'?text='+encodeURIComponent(d.text);
+      });
+    }
   }
   form.addEventListener('input',refresh);form.addEventListener('change',refresh);refresh();
   [aWa,aMail].forEach(function(a){
     a.addEventListener('click',function(e){
-      refresh();
+      e.preventDefault();
       var d=collect(), msg=check(d,a.dataset.via);
-      if(msg){e.preventDefault();err.textContent=msg;err.hidden=false;return;}
+      if(msg){err.textContent=msg;err.hidden=false;return;}
       err.hidden=true;
       document.getElementById('summary').textContent=d.text;
       document.getElementById('done-txt').textContent=a.dataset.via==='wa'
         ?'Se ha abierto WhatsApp con tu mensaje ya escrito. Solo tienes que pulsar «Enviar» en WhatsApp y te respondemos lo antes posible.'
         :'Se ha abierto tu correo con el mensaje ya escrito. Solo tienes que pulsar «Enviar». Si no se abre, cópialo y mándalo a '+MAIL+'.';
       setTimeout(function(){form.hidden=true;done.hidden=false;},300);
+      var url=buildUrl(a.dataset.via,d);
+      setTimeout(function(){window.open(url,'_blank');},50);
     });
   });
   form.addEventListener('submit',function(e){e.preventDefault();aWa.click();});
